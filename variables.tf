@@ -11,7 +11,7 @@ variable "tags" {
 
 variable "subnet_ids" {
   type        = list(string)
-  description = "A list of subnet IDs to associate with ALB"
+  description = "A list of subnet IDs to associate with elb"
 }
 
 variable "is_internal" {
@@ -29,7 +29,7 @@ variable "http2_enabled" {
 variable "security_group_ids" {
   type        = list(string)
   default     = []
-  description = "A list of additional security group IDs to allow access to ALB"
+  description = "A list of additional security group IDs to allow access to elb"
 }
 
 variable "access_logs_prefix" {
@@ -71,7 +71,7 @@ variable "ip_address_type" {
 variable "deletion_protection_enabled" {
   type        = bool
   default     = true
-  description = "A boolean flag to enable/disable deletion protection for ALB"
+  description = "A boolean flag to enable/disable deletion protection for elb"
 }
 
 variable "drop_invalid_header_fields" {
