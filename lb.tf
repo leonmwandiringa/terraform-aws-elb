@@ -22,4 +22,14 @@ resource "aws_lb" "default" {
     prefix  = var.access_logs_prefix
     enabled = var.access_logs_enabled
   }
+
+  dynamic "subnet_mapping" {
+    for_each = var.subnet_mapping
+    content {
+      subnet_id = subnet_mapping.value["subnet_id"]
+      allocation_id = subnet_mapping.value["allocation_id"]
+      private_ipv4_address = subnet_mapping.value["private_ipv4_address"]
+      ipv6_address = subnet_mapping.value["ipv6_address"]
+    }
+  }
 }

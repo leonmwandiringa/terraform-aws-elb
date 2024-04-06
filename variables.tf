@@ -14,6 +14,17 @@ variable "subnet_ids" {
   description = "A list of subnet IDs to associate with elb"
 }
 
+variable "subnet_mapping" {
+  type = list(object({
+    allocation_id = string
+    subnet_id = string
+    ipv6_address = string
+    private_ipv4_address = string
+  }))
+  default = []
+  description = "subnet mapping vals"
+}
+
 variable "is_internal" {
   type = bool
   description = "is internal check"
