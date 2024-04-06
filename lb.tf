@@ -17,10 +17,13 @@ resource "aws_lb" "default" {
   drop_invalid_header_fields       = var.drop_invalid_header_fields
   preserve_host_header             = var.preserve_host_header
 
-  access_logs {
-    bucket  = var.access_logs_s3_bucket_id
-    prefix  = var.access_logs_prefix
-    enabled = var.access_logs_enabled
+  dynamic "access_logs" {
+    for_each = var.access_logs_enabled == true ? [1] : []
+    content{
+      bucket  = var.access_logs_s3_bucket_id
+      prefix  = var.access_logs_prefix
+      enabled = var.access_logs_enabled
+    }
   }
 
   dynamic "subnet_mapping" {
